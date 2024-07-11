@@ -1,0 +1,122 @@
+{% extends 'base.html' %} {% block title %}
+  viandasgo Design - Packs de diseños para tus redes
+{% endblock %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
+  <style>
+    .pack-title {
+      font-size: 1.7rem;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div id="landing-page">
+    {% comment %}Packs list section{% endcomment %}
+    <section class="section">
+      <div class="container">
+        <h1 class="title has-text-centered has-text-primary is-2">Packs disponibles</h1>
+        <h3 class="subtitle has-text-centered mb-6 is-5">¡No esperes más para hacer despegar tu negocio!</h3>
+
+        <div class="columns is-desktop mt-6">
+          {% for pack in packs %}
+            <div class="column is-one-third">
+              <div class="box card slightly-rotate-hover pack-card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <a href="{% url 'main:pack_detail' pack.custom_url|default:pack.id %}"><img src="{{ media_root }}{{ pack.cover.url }}" alt="pack cover" /></a>
+                  </figure>
+                  {% if pack.price == 0 %}
+                    <div class="price-tag free-tag">Gratis</div>
+                  {% endif %}
+                  {% if pack.price > 0 %}
+                    <div class="price-tag">${{ pack.price }}</div>
+                  {% endif %}
+                </div>
+                <div class="card-content">
+                  <p class="pack-title title block has-text-primary">{{ pack.name }}</p>
+                  <p class="subtitle block has-text-primary">
+                    <small>{{ pack.subtitle }}</small>
+                  </p>
+
+                  <div class="block">
+                    <a href="{% url 'main:pack_detail' pack.custom_url|default:pack.id %}" class="button is-link is-light is-rounded">Ver pack</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <nav class="level is-mobile mt-6 mb-6 pt-6">
+          <div class="level-item has-text-centered">
+            <div>
+              <i class="lni lni-users level-icon"></i>
+              <p class="heading">Seguidores en redes</p>
+              <p class="is-size-2">
+                <b>{{ instagram_followers }}</b>
+              </p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <i class="lni lni-rocket level-icon"></i>
+              <p class="heading">Packs vendidos</p>
+              <p class="is-size-2">
+                <b>{{ sold_packs }}</b>
+              </p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered is-hidden-mobile">
+            <div>
+              <i class="lni lni-bolt level-icon"></i>
+              <p class="heading">Emprendimientos usando viandasgo</p>
+              <p class="is-size-2">
+                <b>52</b>
+              </p>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <hr />
+
+    {% comment %}Reviews section{% endcomment %}
+    <section class="section reviews-section">
+      <h1 class="title has-text-centered has-text-primary is-2">¿Qué opinan quienes han usado nuestros packs?</h1>
+
+      <div class="block reviews-container is-flex">
+        {% for review in customer_reviews %}
+          <div class="box review">
+            <div class="media block">
+              <div class="media-left mt-4" style="width: 90px;">
+                <figure class="image is-4by3">
+                  <img src="{{ media_root }}{{ review.pack.cover.url }}" alt="review" style="border-radius: 4px;" />
+                </figure>
+              </div>
+
+              <div class="media-content">
+                <p>
+                  {% for i in review.filled_stars %}
+                    <span class="icon"><i class="lni lni-star-fill score-star"></i></span>
+                  {% endfor %}
+                  {% for i in review.empty_stars %}
+                    <span class="icon"><i class="lni lni-star-empty score-star"></i></span>
+                  {% endfor %}
+                </p>
+                <p class="is-size-4">{{ review.customer.name }}</p>
+                <p class="is-size-6">{{ review.customer.business }}</p>
+              </div>
+            </div>
+            <div class="content">
+              <p>{{ review.review }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+{% endblock %}

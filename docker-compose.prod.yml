@@ -1,0 +1,105 @@
+services:
+  db:
+    restart: always
+    image: postgres
+    volumes:
+      - viandasgo_design_volume:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+    env_file:
+      - .env
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U postgres' ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - web_network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod # Use the specific Dockerfile for the build
+    command: >
+      sh -c "python manage.py migrate && python manage.py collectstatic --no-input && gunicorn backend.wsgi:application -b 0.0.0.0:8000 -w 3"
+    volumes:
+      - .:/code
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - web_network
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./web_nginx.prod.conf:/etc/nginx/templates/default.conf.template
+      - ./static:/code/static
+      - ./media:/code/media
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro
+    env_file:
+      - .env
+
+    ports:
+      - '80:80'
+      - 443:443
+    depends_on:
+      - web
+    networks:
+      - web_network
+
+  celery:
+    restart: always
+    build: .
+    command: celery -A backend.celery worker -l info -c 1
+    volumes:
+      - .:/code
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  celery-beat:
+    restart: always
+    build: .
+    command: celery -A backend.celery beat -l info
+    volumes:
+      - .:/code
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  redis:
+    image: redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    env_file:
+      - .env
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+
+volumes:
+  viandasgo_design_volume:
+  redis_data:
+
+
+networks:
+  web_network:
+    driver: bridge
