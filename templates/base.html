@@ -1,121 +1,41 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="es">
+<html>
   <head>
-    <title>
-      {% block title %}
-        Zalon Design
-      {% endblock %}
-    </title>
-
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello World!</title>
 
-    {% comment %}Google Fonts{% endcomment %}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <!-- Favicon -->
+    <link href="{% static 'img/brand/favicon.png' %}" rel="icon" type="image/png" />
 
-    {% comment %}Lineicons{% endcomment %}
-    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 
-    {% comment %}Our general styling{% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- Icons -->
+    <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS_MEASUREMENT_ID }}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      
-      gtag('config', '{{ GOOGLE_ANALYTICS_MEASUREMENT_ID }}');
-    </script>
-
-    {% block extra_head %}
-
-    {% endblock %}
+    <!-- Soft UI Design System -->
+    <link type="text/css" href="{% static 'css/soft-design-system.min.css' %}" rel="stylesheet" />
   </head>
+  <body>
+    <h1>Hello, world!</h1>
 
-  {% comment %}TODO: we're forcing light theme here. We have to fix the dark mode variables and remove this data-theme param{% endcomment %}
-  <body data-theme="light">
-    {% block header %}
-      <header>
-        <nav id="navbar" class="navbar is-justify-content-center" role="navigation" aria-label="main navigation">
-          <div class="navbar-brand">
-            <a class="navbar-item is-hidden-desktop" href="/"><img src="{% static '/img/zalon_design_logo.png' %}" alt="Zalon Design logo" /></a>
+    <!-- Core JS Files -->
+    <script src="{% static 'js/core/popper.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/plugins/moment.min.js' %}"></script>
 
-            {% comment %}Menu button for mobile hidden for now{% endcomment %}
-            {% comment %} <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-zalon">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a> {% endcomment %}
-          </div>
-          <div id="navbar-zalon" class="navbar-menu is-flex-grow-0">
-            <div class="navbar">
-              {% comment %}Menu options hidden for now{% endcomment %}
-              {% comment %} <a class="navbar-item">Cómo funciona</a> {% endcomment %}
-              <a class="navbar-item is-hidden-touch" href="/"><img src="{% static '/img/zalon_design_logo.png' %}" alt="Logo" /></a>
-              {% comment %} <a class="navbar-item">Packs disponibles</a> {% endcomment %}
-            </div>
-          </div>
-        </nav>
-      </header>
-    {% endblock %} {% block content %}
+    <!-- Plugin for Select, full documentation here: https://joshuajohnson.co.uk/Choices/ -->
+    <script src="{% static 'js/plugins/choices.min.js' %}" type="text/javascript"></script>
 
-    {% endblock %}
+    <!-- Google Maps Plugin -->
+    {% comment %} <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> {% endcomment %}
 
-    <footer class="footer">
-      <div class="block has-text-centered">
-        <p class="block">
-          Visitanos en <a href="https://instagram.com/zalon.design" target="_blank"><big><i style="vertical-align: middle" class="lni lni-instagram-original"></i></big> Instagram</a>
-        </p>
-      </div>
-      <div class="block has-text-centered">
-        <p class="block">¿Necesitas ayuda con algo? No dudes en escribirnos.</p>
-        <a href="{% url 'main:contact' %}" class="button is-link is-light is-rounded">Contacto</a>
-      </div>
-      <div class="block has-text-centered">
-        <p>
-          <b>Zalon Design 2024</b> by
-          <a href="http://zalon.app">Zalon</a>. This is open sourced for you
-          <a href="https://github.com/falcodeuy/zalon-design/">here</a> 💜
-        </p>
-      </div>
-      <div class="block has-text-centered">
-        <a href="/"><img src="{% static '/img/zalon_design_logo.png' %}" width="150" alt="Zalon Design logo" /></a>
-      </div>
-    </footer>
-
-    <script>
-      // For Bulma burger menu
-      document.addEventListener('DOMContentLoaded', () => {
-        // Get all "navbar-burger" elements
-        const $navbarBurgers = Array.prototype.slice.call(
-          document.querySelectorAll('.navbar-burger'),
-          0
-        );
-      
-        // Add a click event on each of them
-        $navbarBurgers.forEach(el => {
-          el.addEventListener('click', () => {
-            // Get the target from the "data-target" attribute
-            const target = el.dataset.target;
-            const $target = document.getElementById(target);
-      
-            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-            el.classList.toggle('is-active');
-            $target.classList.toggle('is-active');
-          });
-        });
-      });
-    </script>
+    <!-- Control Center for Soft UI Design System: parallax effects, scripts for the example pages etc -->
+    <script src="{% static 'js/soft-design-system.min.js' %}" type="text/javascript"></script>
   </body>
 </html>

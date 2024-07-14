@@ -24,34 +24,7 @@ sdk = mercadopago.SDK(MP_ACCESS_TOKEN)
 
 
 def home(request):
-    packs = Pack.objects.filter(
-        is_active=True,
-    )
-    customer_reviews = CustomerReview.objects.all()[:25]
-    orders_count = Order.objects.count()
-
-    # TODO move this to a service and call it using AJAX to avoid relanting the initial page load
-    def get_instagram_followers():
-        try:
-            url = f"https://www.instagram.com/zalon.app"
-            r = requests.get(url)
-            soup = BeautifulSoup(r.text, "html.parser")
-            data = soup.find_all("meta", attrs={"property": "og:description"})
-            text = data[0].get("content").split()
-            followers = text[0]
-            return followers.replace(",", ".")
-        except Exception as e:
-            print(e)
-            return "6413"
-
-    context = {
-        "packs": packs,
-        "customer_reviews": customer_reviews,
-        "sold_packs": orders_count
-        + 101,  # 101 is a random number to show some activity for marketing purposes
-        "instagram_followers": get_instagram_followers(),
-    }
-    return render(request, "main/home.html", context)
+    return render(request, "main/home.html", {})
 
 
 def pack_detail(request, slug):

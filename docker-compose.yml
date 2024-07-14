@@ -2,7 +2,7 @@ services:
   db:
     image: postgres
     volumes:
-      - viandasgo_design_volume:/var/lib/postgresql/data
+      - viandasgo_volume:/var/lib/postgresql/data
     ports:
       - '5433:5432'
     env_file:
@@ -65,10 +65,10 @@ services:
       retries: 3
 
 volumes:
-  viandasgo_design_volume:
+  viandasgo_volume:
   redis_data:
 
 
 networks:
   default:
-    name: viandasgo_design_network
+    name: viandasgo_network

@@ -3,7 +3,7 @@ services:
     restart: always
     image: postgres
     volumes:
-      - viandasgo_design_volume:/var/lib/postgresql/data
+      - viandasgo_volume:/var/lib/postgresql/data
     ports:
       - '5433:5432'
     env_file:
@@ -96,7 +96,7 @@ services:
       - ./certbot/conf/:/etc/letsencrypt/:rw
 
 volumes:
-  viandasgo_design_volume:
+  viandasgo_volume:
   redis_data:
 
 

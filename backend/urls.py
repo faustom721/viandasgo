@@ -29,7 +29,6 @@ urlpatterns = [
     path(
         "ckeditor5/", include("django_ckeditor_5.urls"), name="ck_editor_5_upload_file"
     ),
-    re_path(r"^media/instructions/(?P<file_path>.*)$", serve_protected_file),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
