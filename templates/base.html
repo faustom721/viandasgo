@@ -1,41 +1,47 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
+    <title>
+      {% block title %}
+        ViandasGo - Almorzá eficiente
+      {% endblock %}
+    </title>
+
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no" />
 
-    <title>Hello World!</title>
+    {% comment %}Lineicons{% endcomment %}
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
 
-    <!-- Favicon -->
-    <link href="{% static 'img/brand/favicon.png' %}" rel="icon" type="image/png" />
+    {% comment %}Our general styling{% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS_MEASUREMENT_ID }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      
+      gtag('config', '{{ GOOGLE_ANALYTICS_MEASUREMENT_ID }}');
+    </script>
 
-    <!-- Icons -->
-    <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    {% block extra_head %}
 
-    <!-- Soft UI Design System -->
-    <link type="text/css" href="{% static 'css/soft-design-system.min.css' %}" rel="stylesheet" />
+    {% endblock %}
   </head>
-  <body>
-    <h1>Hello, world!</h1>
 
-    <!-- Core JS Files -->
-    <script src="{% static 'js/core/popper.min.js' %}" type="text/javascript"></script>
-    <script src="{% static 'js/core/bootstrap.min.js' %}" type="text/javascript"></script>
-    <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}" type="text/javascript"></script>
-    <script src="{% static 'js/plugins/moment.min.js' %}"></script>
+  {% comment %}TODO: we're forcing light theme here. We have to fix the dark mode variables and remove this data-theme param{% endcomment %}
+  <body data-theme="light">
+    {% block header %}
+      <header>header</header>
+    {% endblock %} {% block content %}
 
-    <!-- Plugin for Select, full documentation here: https://joshuajohnson.co.uk/Choices/ -->
-    <script src="{% static 'js/plugins/choices.min.js' %}" type="text/javascript"></script>
-
-    <!-- Google Maps Plugin -->
-    {% comment %} <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> {% endcomment %}
-
-    <!-- Control Center for Soft UI Design System: parallax effects, scripts for the example pages etc -->
-    <script src="{% static 'js/soft-design-system.min.js' %}" type="text/javascript"></script>
+    {% endblock %}
+    <footer class="footer">footer</footer>
   </body>
 </html>
