@@ -23,8 +23,8 @@ SERVER_NAME = os.environ.get("SERVER_NAME")
 sdk = mercadopago.SDK(MP_ACCESS_TOKEN)
 
 
-def home(request):
-    return render(request, "main/home.html", {})
+def landing_page(request):
+    return render(request, "main/landing_page.html", {})
 
 
 def pack_detail(request, slug):
