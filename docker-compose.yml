@@ -39,6 +39,8 @@ services:
     # Without tty, no stdin, and tailwind watcher aborts
     # https://github.com/tailwindlabs/tailwindcss/issues/5324
     tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=1 # https://github.com/timonweb/django-tailwind/issues/190#issuecomment-1876120906
   #
   # celery:
   #   restart: always
