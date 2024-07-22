@@ -14,6 +14,8 @@ ViandasGo platform.
       text editing
 - **Frontend:**
   - Django Templates
+  - HTMX: for easy dynamic content loading. We use it with Django templates with
+    the help of [django-htmx](https://pypi.org/project/django-htmx/)
   - JavaScript
     - [Splide.js](https://splidejs.com/): for carousels.
   - CSS for styling
@@ -58,3 +60,7 @@ docker compose exec web python manage.py migrate
 ```bash
 docker compose exec web python manage.py collectstatic
 ```
+
+# Some notes or clarifications
+
+- Tailwind is integrated using the `django-tailwind` package, as was mentioned before. And it requires the `python manage.py tailwind start` command in development mode to compile the CSS needed in the templates, this triggers the watch mode for the Tailwind CSS compiler, that's why it needs a separate process to keep it running: hence we have the _tailwind_ service in the `docker-compose.yml` file.
