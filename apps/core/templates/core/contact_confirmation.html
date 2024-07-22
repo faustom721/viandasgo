@@ -1,20 +1,22 @@
 {% extends 'base.html' %} {% load static %}
 {% block title %}
-  Error
+  Mensaje enviado
 {% endblock %}
 {% block content %}
   <section class="section base-wrapper">
     <div class="container white-rounded-box">
       <div class="block">
-        <h1 class="has-text-centered title">Algo ha salido mal 😔</h1>
+        <h1 class="has-text-centered title">Mensaje enviado</h1>
       </div>
 
       <div class="block has-text-centered">
-        <p>Vuelve a intentarlo o ponte en contacto con nosotros para que podamos ayudarte.</p>
+        <p>
+          En breve nos pondremos en contacto contigo, responderemos a la casilla de email <b>{{ contact_msg.email }}</b>.
+        </p>
       </div>
 
       <div class="block has-text-centered">
-        <a href="{% url 'main:contact' %}" class="button is-link is-light is-rounded">Contacto</a> <a href="{% url 'main:landing_page' %}" class="button ml-3 is-link is-rounded">Volver al inicio</a>
+        <a href="{% url 'core:landing_page' %}" class="button ml-3 is-link is-rounded">Volver al inicio</a>
       </div>
     </div>
   </section>
