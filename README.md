@@ -22,9 +22,11 @@ ViandasGo platform.
     - [Tailwind CSS Framework](https://tailwindcss.com/): for general styling - We use
       Tailwind with the help of
       [django-tailwind](https://pypi.org/project/django-tailwind/)
-    - [Lineicons](https://lineicons.com/): for icons
     - Some CSS files for custom styling. One for general rules directly in
       _staticfiles_ and another others in every app directory that needs it.
+  - Icons from [Heroicons](https://heroicons.com/)
+- **Database:**
+  - PostgreSQL
 
 ## Apps
 - **Main:** The main app of the project. It contains the main views and
