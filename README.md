@@ -29,8 +29,8 @@ ViandasGo platform.
   - PostgreSQL
 
 ## Apps
-- **Main:** The main app of the project. It contains the main views and
-  templates. Like the landing page, and the contact page.
+- **Core:** The core app of the project. It contains the main views and
+  templates. Like the landing page, and the contact page. Also authentication is managed here.
 - **Clients:** The clients app contains the views and templates for the clients
   section. Here the clients can see the menu and make orders.
 - **Food Places:** The food places app contains the views and templates for the

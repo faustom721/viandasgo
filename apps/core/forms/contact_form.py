@@ -1,8 +1,8 @@
 from django import forms
 from django.utils.translation import gettext as _
 
-from apps.main.models import ContactMsg
-from apps.main.utils import send_contact_notification_email
+from apps.core.models import ContactMsg
+from apps.core.utils import send_contact_notification_email
 
 
 class ContactForm(forms.Form):

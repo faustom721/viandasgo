@@ -20,12 +20,10 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
 
-from apps.main.views import serve_protected_file
-
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("apps.main.urls", namespace="main")),
+    path("", include("apps.core.urls", namespace="core")),
     path(
         "ckeditor5/", include("django_ckeditor_5.urls"), name="ck_editor_5_upload_file"
     ),

@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     "theme",  # This is the theme app we created with django-tailwind
     "django_ckeditor_5",
     "django_celery_beat",
-    "main",
+    "core",
 ]
 
 MIDDLEWARE = [
@@ -81,8 +81,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "apps.main.context_preprocessors.google_analytics",
-                "apps.main.context_preprocessors.django_settings",
+                "apps.core.context_preprocessors.google_analytics",
+                "apps.core.context_preprocessors.django_settings",
             ]
         },
     },
@@ -324,7 +324,7 @@ CKEDITOR_5_CONFIGS = {
 CELERY_BROKER_URL = "redis://redis:6379/0"
 CELERY_BEAT_SCHEDULE = {
     "send-review-email": {
-        "task": "apps.main.tasks.send_review_reminder_emails",
+        "task": "apps.core.tasks.send_review_reminder_emails",
         "schedule": crontab(hour=0, minute=1),
     },
 }
