@@ -1,11 +1,30 @@
 {% extends 'base.html' %} {% block title %}
-  ViandasGo - Comé sano, no pierdas tiempo
+  ViandasGo - Come sano y no pierdas tiempo
 {% endblock %}
 {% load static %}
 
+{% block extra_head %}
+  {% comment %}Dependencies of Splide for the carousel{% endcomment %}
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+{% endblock %}
+
 {% block content %}
-  <section class="bg-gray-50">
-    <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+  <section class="relative w-screen h-screen">
+    <div class="absolute inset-0 z-0">
+      <div class="splide w-full h-full" role="group" aria-label="Splide Basic HTML Example">
+        <div class="splide__track w-full h-full">
+          <ul class="splide__list w-full h-full">
+            <li class="splide__slide w-full h-full relative">
+              <img src="{% static 'img/car1.jpg' %}" alt="Slide 01" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-white to-transparent"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
       <div class="mx-auto max-w-xl text-center">
         <h1 class="text-3xl font-extrabold sm:text-5xl">
           ¿Ya sabes qué vas a comer hoy?
@@ -18,4 +37,11 @@
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var splide = new Splide('.splide');
+      splide.mount();
+    });
+  </script>
 {% endblock %}
