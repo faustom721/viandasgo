@@ -1,10 +1,8 @@
-<!-- <div style="display: flex; justify-content: center; align-items: center;">
-  <img src="./staticfiles/img/zalon_design_logo.png" alt="zalon design logo" width="250"/>
-</div> -->
+# ViandasGo Platform
+ViandasGo aims to be a platform where food places can publish their menu and schedule, and clients can see the menu, make orders, and pay for them beforehand programming the delivery or pickup time. The platform is aimed to be used by small food places that don't have the resources to develop their own platform, and by clients that want to have a more organized way to order food.
 
-ViandasGo platform.
 
-[Website here](https://viandasgo.app/)
+URL: [viandasgo.uy](https://viandasgo.app/)
 
 ## Tech stack
 
@@ -40,6 +38,10 @@ ViandasGo platform.
 - **Internal:** The internal app contains the views and templates us, the ViandasGo
   team, use to manage the platform. Here we can manage the clients, food places,
   orders, and payments. This is aimed to be used through the Django admin panel.
+
+### Theme app
+Yes actually `theme` is a django app too, that's the way `django-tailwind` works. But I kept it outside the apps folder.
+
 
 
 ## Run the project
