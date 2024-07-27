@@ -76,4 +76,4 @@ docker compose exec web python manage.py collectstatic
 
 >**By: Fausto Márquez**
 
-> This project also makes use of a lot of my friend, partner and colleague's work and knowledge, [@CrhistyanSilva](https://github.com/CrhistyanSilva), who is one of the best engineers I have ever met, and even a better person. For more about his work and research over the Python + Django ecosystem visit our [Falcode's Documentation](https://docs.falcode.dev/django/).
+> This project also makes use of a lot of my friend, partner and colleague's work and wisdom, [@CrhistyanSilva](https://github.com/CrhistyanSilva), who is one of the best engineers I have ever met, and even a better person. For more about his work and research over the Python + Django ecosystem visit our [Falcode's Documentation](https://docs.falcode.dev/django/).
