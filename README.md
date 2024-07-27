@@ -72,7 +72,7 @@ docker compose exec web python manage.py collectstatic
 ---------------
 
 # Author's notes
-> I do not believe in the foolishness of investing resources in protecting code. The success of businesses is not the idea nor the technology that implements it; but rather the execution of all parts that make it up. That is why I am keeping this project open-source for the moment. There are no use cases programmed here that do not already exist in the world, and perhaps it can serve someone as a guide or example for working with Django, django-tailwind, HTMX, and Docker.
+> I do not believe in the foolishness of investing resources in protecting code. The success of businesses is not the idea nor the technology that implements it; but rather the execution of all parts that make it up. That is why I am keeping this project open-source for the moment. There are no use cases programmed here that do not already exist in the world, and perhaps it can serve someone as a guide or example for working with Django, Tailwind, HTMX, and Docker.
 
 >**By: Fausto Márquez**
 
