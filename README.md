@@ -1,5 +1,5 @@
-# ViandasGo Platform
-ViandasGo aims to be a platform where food places can publish their menu and schedule, and clients can see the menu, make orders, and pay for them beforehand programming the delivery or pickup time. The platform is aimed to be used by small food places that don't have the resources to develop their own platform, and by clients that want to have a more organized way to order food.
+# ViandasGo Platform (Work in progress...)
+ViandasGo is a platform where food places can publish their menu and schedule, and clients can see the menu, make orders, and pay for them beforehand programming the delivery or pickup time. The platform is aimed to be used by small food places that don't have the resources to develop their own platform, and by clients that want to have a more organized way to order food **mainly solving the issue for those who work and don't have time to cook or go out to eat.**
 
 
 URL: [viandasgo.uy](https://viandasgo.app/)
@@ -65,6 +65,13 @@ docker compose exec web python manage.py migrate
 docker compose exec web python manage.py collectstatic
 ```
 
-# Some notes or clarifications
+# Some tech notes or clarifications
 
 - Tailwind is integrated using the `django-tailwind` package, as was mentioned before. And it requires the `python manage.py tailwind start` command in development mode to compile the CSS needed in the templates, this triggers the watch mode for the Tailwind CSS compiler, that's why it needs a separate process to keep it running: hence we have the _tailwind_ service in the `docker-compose.yml` file.
+
+---------------
+
+# Author's notes
+> I do not believe in the foolishness of investing resources in protecting code. The success of businesses is not the idea nor the technology that implements it; but rather the execution of all parts that make it up. That is why I am keeping this project open-source for now. There are no use cases programmed here that do not already exist in the world, and perhaps it can serve someone as a guide or example for working with Django, django-tailwind, HTMX, and Docker.
+
+>**By: Fausto Márquez**
