@@ -1,5 +1,5 @@
 # ViandasGo Platform (Work in progress...)
-ViandasGo is a platform where food places can publish their menu and schedule, and clients can see the menu, make orders, and pay for them beforehand programming the delivery or pickup time. The platform is aimed to be used by small food places that don't have the resources to develop their own platform, and by clients that want to have a more organized way to order food **mainly solving the issue for those who work and don't have time to cook or go out to eat.**
+ViandasGo is a platform where food places can publish their menu and schedule, and clients can see the menu, make orders, and pay for them beforehand programming their lunches of the entire week. The platform is aimed to be used by small food places that don't have the resources to develop their own platform providing also an optimal way of provisions purchase for them, and by clients that want to have a more organized way to order food **mainly solving the issue for those who work and don't have time to cook or go out to eat.**
 
 
 URL: [viandasgo.uy](https://viandasgo.app/)
