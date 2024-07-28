@@ -29,9 +29,9 @@ URL: [viandasgo.uy](https://viandasgo.app/)
 ## Apps
 - **Core:** The core app of the project. It contains the main views and
   templates. Like the landing page, and the contact page. Also authentication is managed here.
-- **Clients:** The clients app contains the views and templates for the clients
+- **Customers:** The customers app contains the views and templates for the clients
   section. Here the clients can see the menu and make orders.
-- **Vendors:** The food places app contains the views and templates for the
+- **Vendors:** The vendors app contains the views and templates for the
   food places section. Here the food places can manage their menu schedule and orders.
 - **Payments:** The payments app contains the views and templates for the payments
   section. Here the clients can see the payment methods and make payments.

@@ -30,6 +30,6 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-admin.site.site_header = "viandasgo Design Admin"
+admin.site.site_header = "ViandasGo Admin"
 admin.site.index_title = "Funcionalidades"
-admin.site.site_title = "Zalon Design Admin"
+admin.site.site_title = "ViandasGo Admin"
