@@ -43,7 +43,7 @@
 
   <body>
     {% block header %}
-      <header class="bg-white">
+      <header class="bg-gray-100">
         <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
           <a class="block text-teal-600" href="#">
             <span class="sr-only">Home</span>
@@ -68,15 +68,13 @@
                 </button>
               </span>
             </div>
-
-            <a class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700" href="#">Ingreso</a>
           </div>
         </div>
       </header>
     {% endblock %} {% block content %}
 
     {% endblock %}
-    <footer class="bg-gray-100">
+    <footer class="bg-gray-50">
       <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="flex justify-center gap-6">logo</div>
         <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">Come sano y no pierdas tiempo.</p>
@@ -100,8 +98,8 @@
         </ul>
 
         <div class="mt-8 flex flex-wrap justify-center gap-4 text-center">
-          <a class="block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto" href="#">Ingreso locales</a>
-          <a class="block w-full rounded px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto" href="#">Registro locales</a>
+          <a class="block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring sm:w-auto" href="#">Ingreso locales</a>
+          <a class="block w-full rounded px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-red-700 focus:outline-none focus:ring sm:w-auto bg-white hover:bg-gray-100" href="#">Registro locales</a>
         </div>
 
         <ul class="mt-12 flex justify-center gap-6 md:gap-8">

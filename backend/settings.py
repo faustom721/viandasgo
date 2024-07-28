@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "theme",  # This is the theme app we created with django-tailwind
     "django_ckeditor_5",
     "django_celery_beat",
+    "phonenumber_field",
     "core",
 ]
 
@@ -137,6 +138,8 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+AUTH_USER_MODEL = "core.CustomUser"
 
 
 # Internationalization

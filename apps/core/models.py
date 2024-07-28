@@ -1,12 +1,12 @@
-import math
-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
+from django.contrib.auth.models import AbstractUser
 
-from PIL import Image
-from apps.core.utils import send_confirmation_email
-from django_ckeditor_5.fields import CKEditor5Field
+from phonenumber_field.formfields import PhoneNumberField
+
+
+class CustomUser(AbstractUser):
+    phone = PhoneNumberField(region="UY")
 
 
 class ContactMsg(models.Model):
