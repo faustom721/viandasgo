@@ -20,7 +20,6 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
 
-from vendors.urls import urlpatterns as vendors_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,7 +27,7 @@ urlpatterns = [
     path(
         "ckeditor5/", include("django_ckeditor_5.urls"), name="ck_editor_5_upload_file"
     ),
-    path("vendors/", include(vendors_urls, namespace="vendors")),
+    path("vendors/", include("apps.vendors.urls", namespace="vendors")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

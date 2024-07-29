@@ -13,8 +13,6 @@ from django.http import HttpResponse, FileResponse, Http404, HttpResponseRedirec
 
 from .forms.contact_form import ContactForm
 
-# from .utils import check_mp_signature, send_confirmation_email
-
 
 MP_ACCESS_TOKEN = os.environ.get("MP_ACCESS_TOKEN")
 SERVER_NAME = os.environ.get("SERVER_NAME")

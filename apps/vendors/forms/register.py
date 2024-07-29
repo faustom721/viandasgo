@@ -1,13 +1,11 @@
 from django import forms
 
-from ..models import Vendor
+from ..models import VendorUser
 
 
-class RegisterForm(forms.ModelForm):
+class VendorUserRegisterForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
-        model = Vendor
-        fields = "__all__"
-        exclude = ["staff"]
-        widgets = {
-            "description": forms.Textarea(attrs={"rows": 3}),
-        }
+        model = VendorUser
+        fields = ["first_name", "last_name", "email", "password"]
