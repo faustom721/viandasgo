@@ -2,11 +2,11 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 
-from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomUser(AbstractUser):
-    phone = PhoneNumberField(region="UY")
+    phone = PhoneNumberField("Teléfono", region="UY")
 
     def save(self, *args, **kwargs):
         self.username = self.email

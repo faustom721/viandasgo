@@ -8,9 +8,13 @@ from apps.core.models import CustomUser
 class VendorUser(CustomUser):
     """Vendor users are the staff of a vendor, could be the owner, a cashier, etc."""
 
+    selected_vendor = models.ForeignKey(
+        "Vendor", on_delete=models.SET_NULL, null=True, blank=True
+    )  # The vendor store that the user is using (it may have more than one, but can only use one at a time)
+
     class Meta:
-        verbose_name = "Personal"
-        verbose_name_plural = "Personal"
+        verbose_name = "Usuario proveedor"
+        verbose_name_plural = "Usuarios proveedores"
 
 
 class Vendor(models.Model):
@@ -22,7 +26,9 @@ class Vendor(models.Model):
     phone = PhoneNumberField(region="UY")
     email = models.EmailField("Email")
     address = models.CharField("Dirección", max_length=255, null=True, blank=True)
-    staff = models.ManyToManyField(VendorUser, verbose_name="Personal")
+    staff = models.ManyToManyField(
+        VendorUser, verbose_name="Personal"
+    )  # Owner is included in staff
     created_at = models.DateTimeField("Fecha de creación", auto_now_add=True)
 
     max_orders = models.PositiveIntegerField(
