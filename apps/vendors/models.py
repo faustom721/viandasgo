@@ -1,6 +1,6 @@
 from django.db import models
 
-from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.modelfields import PhoneNumberField
 
 from apps.core.models import CustomUser
 
@@ -23,7 +23,7 @@ class Vendor(models.Model):
     logo = models.ImageField("Logo", upload_to="vendors/logos")
     name = models.CharField("Nombre", max_length=100)
     description = models.TextField("Descripción")
-    phone = PhoneNumberField(region="UY")
+    phone = PhoneNumberField("Teléfono", region="UY")
     email = models.EmailField("Email")
     address = models.CharField("Dirección", max_length=255, null=True, blank=True)
     staff = models.ManyToManyField(
