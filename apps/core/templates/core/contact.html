@@ -12,7 +12,7 @@
                 <label class="label">{{ field.label }}</label>
                 <div class="control">{{ field }}</div>
                 {% if field.errors %}
-                  <p class="help is-danger">{{ field.errors }}</p>
+                  <div class="bg-pink-100 text-pink-800 p-2 rounded mt-1 text-sm">{{ field.errors|striptags }}</div>
                 {% endif %}
               </div>
             {% endfor %}

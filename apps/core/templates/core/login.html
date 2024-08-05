@@ -6,21 +6,17 @@
       <h1 class="text-2xl font-bold mb-6 text-gray-900">Iniciar sesión</h1>
       <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Ingresar</button>
+        {% for field in form %}
+          <div class="mb-4">
+            <label class="text-sm">{{ field.label_tag }}</label>
+            {{ field }}
+            {% if field.errors %}
+              <div class="bg-pink-100 text-pink-800 p-2 rounded mt-1 text-sm">{{ field.errors|striptags }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="mt-4 w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">Ingresar</button>
       </form>
-      {% if form.errors %}
-        <ul>
-          {% for field in form %}
-            {% for error in field.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          {% endfor %}
-          {% for error in form.non_field_errors %}
-            <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
     </div>
   </div>
 {% endblock %}
