@@ -95,7 +95,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "backend.wsgi.application"
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/customers/home"
+LOGIN_URL = "/login"
 
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 if DJANGO_ENV == "local":

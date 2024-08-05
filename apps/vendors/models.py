@@ -27,7 +27,7 @@ class Vendor(models.Model):
     email = models.EmailField("Email")
     address = models.CharField("Dirección", max_length=255, null=True, blank=True)
     staff = models.ManyToManyField(
-        VendorUser, verbose_name="Personal"
+        VendorUser, verbose_name="Personal", related_name="vendors_managed"
     )  # Owner is included in staff
     created_at = models.DateTimeField("Fecha de creación", auto_now_add=True)
 

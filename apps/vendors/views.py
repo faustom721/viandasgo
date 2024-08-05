@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
+from .models import VendorUser
 from .forms import VendorUserRegisterForm, VendorRegisterForm
 
 
@@ -50,3 +52,15 @@ def vendor_register(request):
         form = VendorRegisterForm()
     context = {"form": form}
     return render(request, "vendors/vendor_register.html", context)
+
+
+@login_required
+def dashboard(request):
+    user = VendorUser.objects.get(pk=request.user.pk)
+    if not user.selected_vendor:
+        if user.vendors_managed.count() > 0:
+            return HttpResponseRedirect(reverse("vendors:select_vendor"))
+        else:
+            return HttpResponseRedirect(reverse("vendors:vendor_register"))
+    else:
+        return render(request, "vendors/dashboard.html")

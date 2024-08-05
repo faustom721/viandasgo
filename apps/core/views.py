@@ -10,8 +10,9 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, FileResponse, Http404, HttpResponseRedirect
+from django.urls import reverse
 
-from .forms.contact_form import ContactForm
+from .forms import LoginForm, ContactForm
 
 
 MP_ACCESS_TOKEN = os.environ.get("MP_ACCESS_TOKEN")
@@ -21,6 +22,26 @@ sdk = mercadopago.SDK(MP_ACCESS_TOKEN)
 
 def landing_page(request):
     return render(request, "core/landing_page.html", {})
+
+
+def login(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                next_url = request.GET.get("next", "/")
+                if next_url:
+                    return HttpResponseRedirect(next_url)
+                return HttpResponseRedirect(reverse("vendors:dashboard"))
+            else:
+                form.add_error(None, "Usuario o contraseña incorrectos.")
+    else:
+        form = LoginForm()
+    return render(request, "core/login.html", {"form": form})
 
 
 def contact(request):
