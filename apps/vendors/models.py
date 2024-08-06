@@ -25,14 +25,14 @@ class Vendor(models.Model):
     description = models.TextField("Descripción")
     phone = PhoneNumberField("Teléfono", region="UY")
     email = models.EmailField("Email")
-    address = models.CharField("Dirección", max_length=255, null=True, blank=True)
+    address = models.CharField("Dirección", max_length=255)
     staff = models.ManyToManyField(
         VendorUser, verbose_name="Personal", related_name="vendors_managed"
     )  # Owner is included in staff
     created_at = models.DateTimeField("Fecha de creación", auto_now_add=True)
 
     max_orders = models.PositiveIntegerField(
-        "Máximo de pedidos", default=10, null=True, blank=True
+        "Máximo de pedidos", default=15, null=True, blank=True
     )
 
     class Meta:

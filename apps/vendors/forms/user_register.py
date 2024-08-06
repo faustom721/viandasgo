@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.hashers import make_password
 
 from ..models import VendorUser
 from core.widgets import (
@@ -28,3 +29,10 @@ class VendorUserRegisterForm(forms.ModelForm):
         self.fields["email"].required = True
         self.fields["phone"].required = True
         self.fields["password"].required = True
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.password = make_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user

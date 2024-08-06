@@ -49,7 +49,9 @@ def vendor_register(request):
         else:
             return render(request, "vendors/vendor_register.html", {"form": form})
     else:
-        form = VendorRegisterForm()
+        vendor_user = VendorUser.objects.get(pk=request.user.pk)
+        user_has_vendors = vendor_user.vendors_managed.count() > 0
+        form = VendorRegisterForm({"user_has_vendors": user_has_vendors})
     context = {"form": form}
     return render(request, "vendors/vendor_register.html", context)
 

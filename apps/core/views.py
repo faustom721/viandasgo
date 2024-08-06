@@ -1,16 +1,10 @@
-import json
-import requests
 import os
 import mercadopago
 
-
-from bs4 import BeautifulSoup
 from django.shortcuts import render
-from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, FileResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth import authenticate, login
 
 from .forms import LoginForm, ContactForm
 
@@ -24,19 +18,17 @@ def landing_page(request):
     return render(request, "core/landing_page.html", {})
 
 
-def login(request):
+def login_view(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data["username"]
+            username = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                next_url = request.GET.get("next", "/")
-                if next_url:
-                    return HttpResponseRedirect(next_url)
-                return HttpResponseRedirect(reverse("vendors:dashboard"))
+                next_url = request.GET.get("next", reverse("vendors:dashboard"))
+                return HttpResponseRedirect(next_url)
             else:
                 form.add_error(None, "Usuario o contraseña incorrectos.")
     else:
