@@ -20,6 +20,7 @@ def landing_page(request):
 
 
 def login_view(request):
+    # TODO: check if user is authenticated and redirect to dashboard or client home. Don't show login page.
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -34,7 +35,13 @@ def login_view(request):
                 form.add_error(None, "Usuario o contraseña incorrectos.")
     else:
         form = LoginForm()
-    return render(request, "core/login.html", {"form": form})
+    login_for_vendor_user = request.GET.get("vendor_user")
+
+    return render(
+        request,
+        "core/login.html",
+        {"form": form, "for_vendor_user": login_for_vendor_user or False},
+    )
 
 
 def contact(request):
