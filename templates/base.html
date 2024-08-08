@@ -10,7 +10,11 @@
       {% endblock %}
     </title>
 
+    {% comment %}Tailwind{% endcomment %}
     {% tailwind_css %}
+
+    {% comment %}Alpine{% endcomment %}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
     {% comment %}HTMX{% endcomment %}
     <script src="https://unpkg.com/htmx.org@2.0.1"></script>

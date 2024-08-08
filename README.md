@@ -8,20 +8,13 @@ URL: [viandasgo.uy](https://viandasgo.app/)
 
 - **Backend:**
   - [Django](https://www.djangoproject.com/)
-    - [Django CKEditor 5](https://pypi.org/project/django-ckeditor-5/): for rich
-      text editing
 - **Frontend:**
   - Django Templates
-  - HTMX: for easy dynamic content loading. We use it with Django templates with
+  - [Tailwind CSS](https://tailwindcss.com/): for general styling - We use Tailwind with the help of [django-tailwind](https://pypi.org/project/django-tailwind/)
+  - [HTMX](https://htmx.org/): for easy dynamic content loading. We use it with Django templates with
     the help of [django-htmx](https://pypi.org/project/django-htmx/)
-  - JavaScript
-    - [Splide.js](https://splidejs.com/): for carousels.
-  - CSS for styling
-    - [Tailwind CSS Framework](https://tailwindcss.com/): for general styling - We use
-      Tailwind with the help of
-      [django-tailwind](https://pypi.org/project/django-tailwind/)
-    - Some CSS files for custom styling. One for general rules directly in
-      _staticfiles_ and another others in every app directory that needs it.
+  - [Splide.js](https://splidejs.com/): for carousels.
+  - [Alpine.js](https://alpinejs.dev/): for easy JavaScript interactivity.
   - Icons from [Heroicons](https://heroicons.com/)
 - **Database:**
   - PostgreSQL
@@ -41,7 +34,6 @@ URL: [viandasgo.uy](https://viandasgo.app/)
 
 ### Theme app
 Yes actually `theme` is a django app too, that's the way `django-tailwind` works. But I kept it outside the apps folder.
-
 
 
 ## Run the project
@@ -65,9 +57,12 @@ docker compose exec web python manage.py migrate
 docker compose exec web python manage.py collectstatic
 ```
 
-# Some tech notes or clarifications
+# Some tech notes, clarifications and project's standards
 
 - Tailwind is integrated using the `django-tailwind` package, as was mentioned before. And it requires the `python manage.py tailwind start` command in development mode to compile the CSS needed in the templates, this triggers the watch mode for the Tailwind CSS compiler, that's why it needs a separate process to keep it running: hence we have the _tailwind_ service in the `docker-compose.yml` file.
+
+## The way of doing certain things
+### Forms
 
 ---------------
 
@@ -77,3 +72,7 @@ docker compose exec web python manage.py collectstatic
 >**By: Fausto Márquez**
 
 > This project also makes use of a lot of my friend, partner and colleague's work and wisdom, [@CrhistyanSilva](https://github.com/CrhistyanSilva), who is one of the best engineers I have ever met, and even a better person. For more about his work and research over the Python + Django ecosystem visit our [Falcode's Documentation](https://docs.falcode.dev/django/).
+
+# Good third party resources
+- HyperUI: https://www.hyperui.dev/
+- Creative Tim's Tailwind components: https://www.creative-tim.com/twcomponents/
