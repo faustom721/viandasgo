@@ -16,7 +16,7 @@ sdk = mercadopago.SDK(MP_ACCESS_TOKEN)
 
 def landing_page(request):
     # TODO: check if user is authenticated and redirect to dashboard or client home. Don't show landing page.
-    return render(request, "core/landing_page.html", {})
+    return render(request, "core/landing_page.html", {"no_js": True})
 
 
 def login_view(request):

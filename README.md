@@ -62,7 +62,9 @@ docker compose exec web python manage.py collectstatic
 - Tailwind is integrated using the `django-tailwind` package, as was mentioned before. And it requires the `python manage.py tailwind start` command in development mode to compile the CSS needed in the templates, this triggers the watch mode for the Tailwind CSS compiler, that's why it needs a separate process to keep it running: hence we have the _tailwind_ service in the `docker-compose.yml` file.
 
 ## The way of doing certain things
-### Forms
+### General
+- <u>The `no_js` context variable:</u> The base template (templates/base.html) watches a context variable called `no_js`, if a view sets it to `True` in its context then the base template won't load HTMX and Alpine scripts. This is useful for views that don't need JavaScript interactivity so they don't download unnecessary byts, like the landing page or contact page. **But remember** that the sidebar needs Alpine to work.
+
 
 ---------------
 

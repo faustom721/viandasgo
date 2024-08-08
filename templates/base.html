@@ -13,11 +13,12 @@
     {% comment %}Tailwind{% endcomment %}
     {% tailwind_css %}
 
-    {% comment %}Alpine{% endcomment %}
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-
-    {% comment %}HTMX{% endcomment %}
-    <script src="https://unpkg.com/htmx.org@2.0.1"></script>
+    {% if not no_js %}
+      {% comment %}Alpine{% endcomment %}
+      <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+      {% comment %}HTMX{% endcomment %}
+      <script src="https://unpkg.com/htmx.org@2.0.1"></script>
+    {% endif %}
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no" />
