@@ -11,6 +11,12 @@ from core.widgets import (
 
 
 class VendorUserRegisterForm(forms.ModelForm):
+    password_repeat = forms.CharField(
+        label="Repetí la contraseña",
+        widget=TailwindPasswordInput(),
+        required=True,
+    )
+
     class Meta:
         model = VendorUser
         fields = ["first_name", "last_name", "email", "phone", "password"]
@@ -29,6 +35,21 @@ class VendorUserRegisterForm(forms.ModelForm):
         self.fields["email"].required = True
         self.fields["phone"].required = True
         self.fields["password"].required = True
+        self.fields["password_repeat"].required = True
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password_repeat = cleaned_data.get("password_repeat")
+        email = cleaned_data.get("email")
+
+        if password and password_repeat and password != password_repeat:
+            raise forms.ValidationError("Las contraseñas no coinciden.")
+
+        if VendorUser.objects.filter(email=email).exists():
+            raise forms.ValidationError("Ya existe un usuario con este email.")
+
+        return cleaned_data
 
     def save(self, commit=True):
         user = super().save(commit=False)

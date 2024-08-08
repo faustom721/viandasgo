@@ -15,7 +15,7 @@ def user_register(request):
             user = form.save()
             # Authenticate the user
             authenticated_user = authenticate(
-                username=user.username, password=form.cleaned_data.get("password1")
+                username=user.username, password=form.cleaned_data.get("password")
             )
             if authenticated_user is not None:
                 # Log the user in
@@ -26,11 +26,13 @@ def user_register(request):
                 return render(
                     request,
                     "vendors/user_register.html",
-                    {"form": form, "error": "Autenticación fallida."},
+                    {"form": form, "error": "Autenticación fallida.", "no_js": True},
                 )
         else:
             # Render the form with errors back to the template
-            return render(request, "vendors/user_register.html", {"form": form})
+            return render(
+                request, "vendors/user_register.html", {"form": form, "no_js": True}
+            )
     else:
         form = VendorUserRegisterForm()
     context = {"form": form}
