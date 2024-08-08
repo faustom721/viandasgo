@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'vendors/base.html' %}
 
-{% block content %}
+{% block vendors_content %}
   <div class="container mx-auto mt-10 mb-20">
     <div class="max-w-md mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
       <h1 class="text-2xl font-bold mb-6 text-gray-900">Registro de local</h1>
@@ -17,6 +17,9 @@
               <div class="bg-pink-100 text-pink-800 p-2 rounded mt-1 text-sm">{{ field.errors|striptags }}</div>
             {% endif %}
           </div>
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <div class="bg-pink-100 text-pink-800 p-2 rounded mt-1 text-sm">{{ error }}</div>
         {% endfor %}
         <button type="submit" class="mt-4 w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">Registrar</button>
       </form>
