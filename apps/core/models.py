@@ -7,6 +7,22 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class CustomUser(AbstractUser):
     phone = PhoneNumberField("Teléfono", region="UY")
+    vendor_user = models.OneToOneField(
+        "vendors.VendorUser",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="user",
+        primary_key=True,
+    )
+    customer_user = models.OneToOneField(
+        "customers.CustomerUser",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="user",
+        primary_key=True,
+    )
 
     def save(self, *args, **kwargs):
         self.username = self.email

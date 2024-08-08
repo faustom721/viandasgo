@@ -5,7 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from apps.core.models import CustomUser
 
 
-class VendorUser(CustomUser):
+class VendorUser(models.Model):
     """Vendor users are the staff of a vendor, could be the owner, a cashier, etc."""
 
     selected_vendor = models.ForeignKey(

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.hashers import make_password
 
+from core.models import CustomUser
 from ..models import VendorUser
 from core.widgets import (
     TailwindTextInput,
@@ -18,7 +19,7 @@ class VendorUserRegisterForm(forms.ModelForm):
     )
 
     class Meta:
-        model = VendorUser
+        model = CustomUser
         fields = ["first_name", "last_name", "email", "phone", "password"]
         widgets = {
             "first_name": TailwindTextInput(),
@@ -55,5 +56,7 @@ class VendorUserRegisterForm(forms.ModelForm):
         user = super().save(commit=False)
         user.password = make_password(self.cleaned_data["password"])
         if commit:
+            # Create the vendor user for the user
+
             user.save()
         return user
