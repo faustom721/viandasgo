@@ -4,8 +4,14 @@
 {% load static %}
 
 {% block content %}
-  {% include 'vendors/sidebar.html' %}
-  {% block vendors_content %}
+  <div class="lg:grid lg:grid-cols-12">
+    <aside class="lg:col-span-2 border-e">
+      {% include 'vendors/sidebar.html' %}
+    </aside>
+    <section class="lg:col-span-10">
+      {% block vendors_content %}
 
-  {% endblock %}
+      {% endblock %}
+    </section>
+  </div>
 {% endblock %}
