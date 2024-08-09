@@ -16,6 +16,12 @@ class VendorUser(CustomUser):
         verbose_name = "Usuario proveedor"
         verbose_name_plural = "Usuarios proveedores"
 
+    def save(self, *args, **kwargs):
+        # On creation, set the "v->" prefix to the username
+        if not self.pk:
+            self.username = f"v->{self.email}"
+        super().save(*args, **kwargs)
+
 
 class Vendor(models.Model):
     """Vendors are food stores, businesses"""
@@ -29,6 +35,13 @@ class Vendor(models.Model):
     staff = models.ManyToManyField(
         VendorUser, verbose_name="Personal", related_name="vendors_managed"
     )  # Owner is included in staff
+    owner = models.ForeignKey(
+        VendorUser,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="vendors_owned",
+    )
     created_at = models.DateTimeField("Fecha de creación", auto_now_add=True)
 
     max_orders = models.PositiveIntegerField(

@@ -8,10 +8,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 class CustomUser(AbstractUser):
     phone = PhoneNumberField("Teléfono", region="UY")
 
-    def save(self, *args, **kwargs):
-        self.username = self.email
-        super().save(*args, **kwargs)
-
 
 class ContactMsg(models.Model):
     name = models.CharField("Nombre", max_length=100)

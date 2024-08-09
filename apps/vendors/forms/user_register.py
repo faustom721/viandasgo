@@ -47,7 +47,9 @@ class VendorUserRegisterForm(forms.ModelForm):
             raise forms.ValidationError("Las contraseñas no coinciden.")
 
         if VendorUser.objects.filter(email=email).exists():
-            raise forms.ValidationError("Ya existe un usuario con este email.")
+            raise forms.ValidationError(
+                "Ya existe un usuario administrador con este email."
+            )
 
         return cleaned_data
 

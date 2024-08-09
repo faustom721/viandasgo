@@ -8,7 +8,7 @@ from .models import VendorUser
 from .forms import VendorUserRegisterForm, VendorRegisterForm
 
 
-def user_register(request):
+def user_register_view(request):
     if request.method == "POST":
         form = VendorUserRegisterForm(request.POST)
         if form.is_valid():
@@ -39,7 +39,8 @@ def user_register(request):
     return render(request, "vendors/user_register.html", context)
 
 
-def vendor_register(request):
+@login_required
+def vendor_register_view(request):
     if request.method == "POST":
         form = VendorRegisterForm(request.POST, request.FILES)
         if form.is_valid():
@@ -59,7 +60,7 @@ def vendor_register(request):
 
 
 @login_required
-def dashboard(request):
+def dashboard_view(request):
     user = VendorUser.objects.get(pk=request.user.pk)
     if not user.selected_vendor:
         if user.vendors_managed.count() > 0:
